@@ -237,6 +237,61 @@ export class Context {
 }
 /**
 */
+export class LogoColor {
+
+    __destroy_into_raw() {
+        const ptr = this.__wbg_ptr;
+        this.__wbg_ptr = 0;
+
+        return ptr;
+    }
+
+    free() {
+        const ptr = this.__destroy_into_raw();
+        wasm.__wbg_logocolor_free(ptr);
+    }
+    /**
+    * @returns {number}
+    */
+    get r() {
+        const ret = wasm.__wbg_get_logocolor_r(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+    * @param {number} arg0
+    */
+    set r(arg0) {
+        wasm.__wbg_set_logocolor_r(this.__wbg_ptr, arg0);
+    }
+    /**
+    * @returns {number}
+    */
+    get g() {
+        const ret = wasm.__wbg_get_logocolor_g(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+    * @param {number} arg0
+    */
+    set g(arg0) {
+        wasm.__wbg_set_logocolor_g(this.__wbg_ptr, arg0);
+    }
+    /**
+    * @returns {number}
+    */
+    get b() {
+        const ret = wasm.__wbg_get_logocolor_b(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+    * @param {number} arg0
+    */
+    set b(arg0) {
+        wasm.__wbg_set_logocolor_b(this.__wbg_ptr, arg0);
+    }
+}
+/**
+*/
 export class Pos {
 
     static __wrap(ptr) {
@@ -307,6 +362,32 @@ export class StateData {
     free() {
         const ptr = this.__destroy_into_raw();
         wasm.__wbg_statedata_free(ptr);
+    }
+    /**
+    * @returns {number}
+    */
+    get canvas_width() {
+        const ret = wasm.__wbg_get_statedata_canvas_width(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+    * @param {number} arg0
+    */
+    set canvas_width(arg0) {
+        wasm.__wbg_set_statedata_canvas_width(this.__wbg_ptr, arg0);
+    }
+    /**
+    * @returns {number}
+    */
+    get canvas_height() {
+        const ret = wasm.__wbg_get_statedata_canvas_height(this.__wbg_ptr);
+        return ret;
+    }
+    /**
+    * @param {number} arg0
+    */
+    set canvas_height(arg0) {
+        wasm.__wbg_set_statedata_canvas_height(this.__wbg_ptr, arg0);
     }
     /**
     * @returns {Pos}
@@ -428,6 +509,15 @@ function __wbg_get_imports() {
         const ret = getStringFromWasm0(arg0, arg1);
         return addHeapObject(ret);
     };
+    imports.wbg.__wbg_getRandomValues_37fa2ca9e4e07fab = function() { return handleError(function (arg0, arg1) {
+        getObject(arg0).getRandomValues(getObject(arg1));
+    }, arguments) };
+    imports.wbg.__wbindgen_object_drop_ref = function(arg0) {
+        takeObject(arg0);
+    };
+    imports.wbg.__wbg_randomFillSync_dc1e9a60c158336d = function() { return handleError(function (arg0, arg1) {
+        getObject(arg0).randomFillSync(takeObject(arg1));
+    }, arguments) };
     imports.wbg.__wbg_crypto_c48a774b022d20ac = function(arg0) {
         const ret = getObject(arg0).crypto;
         return addHeapObject(ret);
@@ -453,9 +543,6 @@ function __wbg_get_imports() {
         const ret = typeof(getObject(arg0)) === 'string';
         return ret;
     };
-    imports.wbg.__wbindgen_object_drop_ref = function(arg0) {
-        takeObject(arg0);
-    };
     imports.wbg.__wbg_msCrypto_bcb970640f50a1e8 = function(arg0) {
         const ret = getObject(arg0).msCrypto;
         return addHeapObject(ret);
@@ -468,12 +555,6 @@ function __wbg_get_imports() {
         const ret = typeof(getObject(arg0)) === 'function';
         return ret;
     };
-    imports.wbg.__wbg_getRandomValues_37fa2ca9e4e07fab = function() { return handleError(function (arg0, arg1) {
-        getObject(arg0).getRandomValues(getObject(arg1));
-    }, arguments) };
-    imports.wbg.__wbg_randomFillSync_dc1e9a60c158336d = function() { return handleError(function (arg0, arg1) {
-        getObject(arg0).randomFillSync(takeObject(arg1));
-    }, arguments) };
     imports.wbg.__wbg_newnoargs_581967eacc0e2604 = function(arg0, arg1) {
         const ret = new Function(getStringFromWasm0(arg0, arg1));
         return addHeapObject(ret);
